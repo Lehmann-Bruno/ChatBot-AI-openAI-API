@@ -1,0 +1,44 @@
+{
+  "554796110798@c.us": [
+    {
+      "role": "user",
+      "content": "Oi"
+    },
+    {
+      "role": "assistant",
+      "content": "Olá! Como posso ajudar hoje? Você tem algum pet cadastrado ou quer saber sobre serviços como banho e tosa, hospedagem, transporte, vacinação, consultas ou cadastro? Diga o nome do pet ou o que precisa."
+    },
+    {
+      "role": "user",
+      "content": "Meus petes"
+    },
+    {
+      "role": "assistant",
+      "content": "Aqui estão seus pets (incluindo exemplos):\n• Thor (Cachorro - Labrador Retriever)\n• Mia (Gato - SRD)\n• Colosso (cão - Pinscher)\n• Miguel (tarantula)\n• Articuno (passaro - tipo gelo)"
+    },
+    {
+      "role": "user",
+      "content": "Quais meus bixino?"
+    },
+    {
+      "role": "assistant",
+      "content": "Aqui estão seus pets (incluindo exemplos):\n• Thor (Cachorro - Labrador Retriever)\n• Mia (Gato - SRD)\n• Colosso (cão - Pinscher)\n• Miguel (tarantula)\n• Articuno (passaro - tipo gelo)"
+    },
+    {
+      "role": "user",
+      "content": "Remlamtorio do artimkujo"
+    },
+    {
+      "role": "assistant",
+      "content": "Ainda não há PDF disponível para o pet *Articuno*. Assim que o relatório for gerado, aviso por aqui. 🐾"
+    },
+    {
+      "role": "user",
+      "content": "Do thorzinho ent"
+    },
+    {
+      "role": "assistant",
+      "content": "Segue o relatório mais recente de *Thor* 🐾"
+    }
+  ]
+}

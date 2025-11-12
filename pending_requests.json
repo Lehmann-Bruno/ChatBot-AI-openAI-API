@@ -1,0 +1,20 @@
+[
+  {
+    "user": "554796110798@c.us",
+    "intent": "Solicitação de agendamento de consulta (banho)",
+    "text": "Amanhã umas 3 da tarde, o articuno tem tipo, 1.5 metros, mas tem que tomar cuidado porque ele congela a agua perto dele, então o banho precisa estar fervendo",
+    "timestamp": "2025-11-12T12:31:06.878Z"
+  },
+  {
+    "user": "554796110798@c.us",
+    "intent": "Solicitação de agendamento de consulta (banho)",
+    "text": "Amanhã umas 3 da tarde, o articuno tem tipo, 1.5 metros, mas tem que tomar cuidado porque ele congela a agua perto dele, então o banho precisa estar fervendo",
+    "timestamp": "2025-11-12T12:34:18.300Z"
+  },
+  {
+    "user": "554796703670@c.us",
+    "intent": "Validação de cadastro de pet",
+    "text": "meu pet é um cachorro o nome dele é Rex e ele é um york",
+    "timestamp": "2025-11-12T17:03:03.164Z"
+  }
+]

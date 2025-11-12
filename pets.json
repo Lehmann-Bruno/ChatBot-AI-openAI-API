@@ -1,0 +1,31 @@
+{
+  "554796110798@c.us": [
+    {
+      "petName": "Colosso",
+      "species": "cão",
+      "breed": "Pinscher"
+    },
+    {
+      "petName": "Miguel",
+      "species": "tarantula",
+      "breed": ""
+    },
+    {
+      "petName": "Articuno",
+      "species": "passaro",
+      "breed": "tipo gelo"
+    }
+  ],
+  "554796703670@c.us": [
+    {
+      "petName": "Thor",
+      "species": "Cachorro",
+      "breed": "Golden Retriever"
+    },
+    {
+      "petName": "Rex (pendente)",
+      "species": "cão",
+      "breed": "York"
+    }
+  ]
+}
