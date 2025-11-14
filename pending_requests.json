@@ -16,5 +16,47 @@
     "intent": "Validação de cadastro de pet",
     "text": "meu pet é um cachorro o nome dele é Rex e ele é um york",
     "timestamp": "2025-11-12T17:03:03.164Z"
+  },
+  {
+    "user": "554796119010@c.us",
+    "intent": "Validação de cadastro de pet",
+    "text": "benício\ngato\nsrd",
+    "timestamp": "2025-11-12T22:34:40.724Z"
+  },
+  {
+    "user": "554796119010@c.us",
+    "intent": "Solicitação de agendamento de consulta (vacinação)",
+    "text": "mia\nsexta de manhã",
+    "timestamp": "2025-11-12T22:35:34.156Z"
+  },
+  {
+    "user": "554796703670@c.us",
+    "intent": "Validação de remoção de pet",
+    "text": "Thor (Cachorro - Golden Retriever) \nfaleceu",
+    "timestamp": "2025-11-12T22:39:17.674Z"
+  },
+  {
+    "user": "554791158071@c.us",
+    "intent": "Validação de cadastro de pet",
+    "text": "Milu, Golden Retriever, Cão",
+    "timestamp": "2025-11-13T00:02:54.769Z"
+  },
+  {
+    "user": "554791158071@c.us",
+    "intent": "Solicitação de agendamento de consulta (tosa)",
+    "text": "Sabado de manha",
+    "timestamp": "2025-11-13T00:04:07.592Z"
+  },
+  {
+    "user": "554796703670@c.us",
+    "intent": "Solicitação de agendamento de consulta (tosa)",
+    "text": "amanhã as 15h",
+    "timestamp": "2025-11-13T00:11:36.337Z"
+  },
+  {
+    "user": "554796703670@c.us",
+    "intent": "Validação de cadastro de pet",
+    "text": "isso mesmo",
+    "timestamp": "2025-11-13T00:12:35.894Z"
   }
 ]

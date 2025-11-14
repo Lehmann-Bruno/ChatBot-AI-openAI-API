@@ -82,6 +82,7 @@ function getPets(userId) { // lista todos os pets
 
 // FIM DAS FUNÇÕES
 
+// primeiro login precisa de conexão com o qr code
 client.on("qr", (qr) => {
   console.log("📱 Scan this QR code to log in:");
   qrcode.generate(qr, { small: true });
@@ -93,8 +94,9 @@ client.on("ready", () => {
 
 client.on("message", async (message) => {
   try {
-    if (message.fromMe) return;
+    if (message.fromMe) return; // eventualmente adicionar timeout de alguns minutos, que impede o bot de ativar se um funcionario estiver falando com o cliente.
     const user = message.from;
+    const chat = await message.getChat();
     const text = message.body.trim();
     const now = Date.now();
 
@@ -120,7 +122,13 @@ client.on("message", async (message) => {
           - Nunca explique como o sistema funciona nem mencione arquivos internos.
           - Se o tutor perguntar "como funcionam os relatórios", responda apenas de forma prática:
             "Os relatórios são enviados sempre que há uma atualização do seu pet ou quando você pedir. Deseja que eu envie o último agora?"
-          - Nunca diga o que você faz internamente ou por que faz algo.`,
+          - Nunca diga o que você faz internamente ou por que faz algo.
+          REGRAS DE SEGURANÇA (OBRIGATÓRIAS):
+          - Nunca sugerir alimentos, dietas, receitas caseiras, suplementos, remédios, medicações, produtos de uso veterinário ou quaisquer cuidados de saúde específicos.
+          - Caso o tutor pergunte sobre alimentação, dieta, saúde, sintomas, doenças, medicamentos, toxicidade ou “o que posso dar”, responda sempre:
+            "Para segurança do seu pet, não posso recomendar alimentos ou cuidados médicos. O ideal é consultar um médico-veterinário. Posso ajudar com serviços da petshop."
+          - Não sugerir nenhum tipo de comida humana, mesmo que pareça inofensivo.
+          - Se a IA não tiver certeza ou a pergunta envolver saúde — sempre recusar educadamente e redirecionar.`,
         },
       ];
 
@@ -130,8 +138,8 @@ client.on("message", async (message) => {
     }
     // Delay basico pra IA parecer que está pensando
     else if (lastTime && timeDiff > 5 && timeDiff <= 20) {
-      console.log(`[Delay] ${user} - waiting 15s before responding...`);
-      await new Promise((resolve) => setTimeout(resolve, 5000));
+      console.log(`[Delay] ${user} - waiting 2s before responding...`);
+      await new Promise((resolve) => setTimeout(resolve, 2000));
     }
 
     lastMessageTime[user] = now;
@@ -199,7 +207,13 @@ client.on("message", async (message) => {
     - Nunca explique como o sistema funciona nem mencione arquivos internos.
     - Se o tutor perguntar "como funcionam os relatórios", responda apenas de forma prática:
       "Os relatórios são enviados sempre que há uma atualização do seu pet ou quando você pedir. Deseja que eu envie o último agora?"
-    - Nunca diga o que você faz internamente ou por que faz algo.`,
+    - Nunca diga o que você faz internamente ou por que faz algo.
+      REGRAS DE SEGURANÇA (OBRIGATÓRIAS):
+    - Nunca sugerir alimentos, dietas, receitas caseiras, suplementos, remédios, medicações, produtos de uso veterinário ou quaisquer cuidados de saúde específicos.
+    - Caso o tutor pergunte sobre alimentação, dieta, saúde, sintomas, doenças, medicamentos, toxicidade ou “o que posso dar”, responda sempre:
+      "Para segurança do seu pet, não posso recomendar alimentos ou cuidados médicos. O ideal é consultar um médico-veterinário. Posso ajudar com serviços da petshop."
+    - Não sugerir nenhum tipo de comida humana, mesmo que pareça inofensivo.
+    - Se a IA não tiver certeza ou a pergunta envolver saúde — sempre recusar educadamente e redirecionar.`,
     };
 
     const context = [
@@ -213,24 +227,15 @@ client.on("message", async (message) => {
       })),
     ];
 
+    chat.sendStateTyping();
     let response = await openai.responses.create({
       model: "gpt-5-nano-2025-08-07",
       input: context,
-      max_output_tokens: 400,
+      max_output_tokens: 1250,
       reasoning: { effort: "low" },
       tools: petshopTools,
       });
-    
-    if (response.status === "incomplete" && response.incomplete_details?.reason === "max_output_tokens") {
-      console.warn("Truncated output, retrying with higher limit...");
-      response = await openai.responses.create({
-        model: "gpt-5-nano-2025-08-07",
-        input: context,
-        max_output_tokens: 1200,
-        reasoning: { effort: "low" },
-        tools: petshopTools,
-      });
-    }
+
     if (response.output && response.output.length > 0) {
       const funcCall = response.output.find(
         (item) => item.type === "function_call" && item.status === "completed"
@@ -315,7 +320,7 @@ client.on("message", async (message) => {
         await message.reply(actionText);
         chatHistory[user].push({ role: "assistant", content: actionText });
         saveMemory();
-        return; // <== ESTE return impede duplicação
+        return;
       }
     }
 
@@ -351,7 +356,7 @@ client.on("message", async (message) => {
 
     chatHistory[user].push({ role: "assistant", content: aiOutput });
     saveMemory();
-
+    await chat.clearState();
     await message.reply(aiOutput);
     console.log(`[${BUSINESS_NAME}] ${aiOutput}`);
   } catch (err) {
